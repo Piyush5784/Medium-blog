@@ -16,3 +16,20 @@ export const allBlogs = atom({
     },
   }),
 });
+
+export const post_inputs = atom({
+  key: "post_Inputs",
+  default: {
+    username: "",
+    password: "",
+  },
+});
+
+// export const signup_post_inputs = atom({
+//   key: "signup_post_inputs",
+//   default: {
+//     username: "",
+//     password: "",
+//     name: "",
+//   },
+// });

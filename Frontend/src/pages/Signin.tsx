@@ -1,20 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import LabeledInput from "../components/LabeledInput";
 import Quote from "../components/Quote";
-import { useState } from "react";
 import { SigninInput } from "@100xdevs/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { toast } from "react-toastify";
 import Loading from "../components/Loading";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useRecoilState } from "recoil";
+import { post_inputs } from "../Atoms/BlogAtom";
 
 const Signin = () => {
   const navigate = useNavigate();
-  const [postInputs, setPostInputs] = useState<SigninInput>({
-    username: "",
-    password: "",
-  });
+  const [postInputs, setPostInputs] = useRecoilState<SigninInput>(post_inputs);
 
   async function sendRequest(e: any) {
     e.preventDefault();
