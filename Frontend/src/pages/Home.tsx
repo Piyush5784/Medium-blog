@@ -26,10 +26,9 @@ const Home = () => {
         <p className="font-bold text-[50px]">Explore, Engage, Evolve ,</p>
         <p className="text-[17px]">
           {" "}
-          Your digital hub for enriching content, thoughtful insights, and
-          meaningful conversations on [Your Blog Niche]. Embark on a journey of
-          discovery as you delve into a world of knowledge, inspiration, and
-          creativity. <br /> <br />
+          Your digital hub for enriching content, thoughtful insights. Embark on
+          a journey of discovery as you delve into a world of knowledge,
+          inspiration, and creativity. <br /> <br />
           Discover Our Categories <br />
           <br /> Navigate through our diverse array of categories tailored to
           cater to your interests and curiosity: <br /> <br />
