@@ -50,7 +50,7 @@ const Signin = () => {
           <div className="h-screen flex justify-center flex-col">
             <div className="flex justify-center items-center flex-col">
               <div className="text-center w-full">
-                <div className="text-3xl font-bold">Create an account</div>
+                <div className="text-3xl font-bold">Login to your account</div>
                 <div className="text-slate-400">
                   Don't have an account
                   <Link to={"/signup"} className="underline pl-2">
