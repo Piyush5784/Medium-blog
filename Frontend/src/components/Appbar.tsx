@@ -41,26 +41,17 @@ const Appbar = () => {
 export const HomeAppbar = () => {
   return (
     <>
-      <div className="h-24 w-full border flex justify-between">
-        <div className="logo cursor-pointer flex justify-center items-center w-32">
+      <div className="flex gap-4 p-2 md:p-5 justify-between items-center">
+        <a href="" className="pl-5 font-bold">
           Medium
-        </div>
-        <div className="flex gap-6 w-84 mr-10 justify-center items-center">
-          <div className="">
-            <a
-              href="https://www.linkedin.com/in/piyush-jha-a29619239/"
-              target="blank"
-            >
-              About
-            </a>
-          </div>
-          <div>
-            <Link to={"/signin"}>Sign in</Link>
-          </div>
-          <Link to={"/signup"}>
-            <button className="bg-black hover:bg-white border border-black hover:text-black text-white rounded-3xl px-5 py-2.5">
-              Get started
-            </button>
+        </a>
+        <div className="flex text-sm justify-center items-center gap-4">
+          <a href="">About</a>
+          <Link to={"/signin"} className="text-sm">
+            Sign in
+          </Link>
+          <Link to={"/signup"} className="text-sm">
+            Get Started
           </Link>
         </div>
       </div>
@@ -69,3 +60,32 @@ export const HomeAppbar = () => {
 };
 
 export default Appbar;
+{
+  /* <>
+<div className="h-24 w-full border flex justify-between">
+  <div className="logo font-bold cursor-pointer pl-7 flex justify-center items-center w-32">
+    Medium
+  </div>
+  <div className="flex pl-2 gap-6 w-84 mr-10 justify-center items-center">
+    <div className="">
+      <a
+        href="https://www.linkedin.com/in/piyush-jha-a29619239/"
+        target="blank"
+      >
+        About
+      </a>
+    </div>
+    <div>
+      <div className="">
+        <Link to={"/signin"}>Sign in</Link>
+      </div>
+    </div>
+    <Link to={"/signup"}>
+      <button className="bg-black text-sm hover:bg-white border border-black hover:text-black text-white rounded-3xl px-3 py-2.5">
+        Get started
+      </button>
+    </Link>
+  </div>
+</div>
+</> */
+}
