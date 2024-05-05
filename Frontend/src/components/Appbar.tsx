@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
 
-const Appbar = () => {
+export const Appbar = () => {
   const navigate = useNavigate();
   function Logout() {
     localStorage.removeItem("authorization");
@@ -59,7 +59,6 @@ export const HomeAppbar = () => {
   );
 };
 
-export default Appbar;
 {
   /* <>
 <div className="h-24 w-full border flex justify-between">

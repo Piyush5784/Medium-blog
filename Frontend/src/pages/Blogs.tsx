@@ -1,5 +1,5 @@
 import { useRecoilValueLoadable } from "recoil";
-import Appbar from "../components/Appbar";
+import { Appbar } from "../components/Appbar";
 import BlogCard from "../components/BlogCard";
 import { allBlogs } from "../Atoms/BlogAtom";
 import { AllBlogSkeleton } from "../components/BlogSkeleton";
