@@ -7,6 +7,7 @@ import Publish from "./pages/Publish";
 import Home from "./pages/Home";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { memo } from "react";
 
 function App() {
   const routes = [
@@ -61,4 +62,4 @@ function App() {
   );
 }
 
-export default App;
+export default memo(App);

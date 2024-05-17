@@ -47,8 +47,8 @@ export const HomeAppbar = () => {
         </a>
         <div className="flex text-sm justify-center items-center gap-4">
           <a href="">About</a>
-          <Link to={"/signin"} className="text-sm">
-            Sign in
+          <Link to={"/signup"} className="text-sm">
+            Sign up
           </Link>
           <Link to={"/signup"} className="text-sm">
             Get Started

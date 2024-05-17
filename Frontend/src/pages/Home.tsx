@@ -14,9 +14,9 @@ const Home = () => {
             topic.
           </p>
           <div>
-            <Link to={"/signup"}>
+            <Link to={"/signin"}>
               <button className="bg-black hover:bg-white border border-black hover:text-black text-white rounded-3xl px-5 py-2.5">
-                Sign up for free
+                Sign in
               </button>
             </Link>
           </div>

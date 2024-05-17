@@ -14,7 +14,9 @@ const Signin = () => {
   const navigate = useNavigate();
   const [postInputs, setPostInputs] = useRecoilState<SigninInput>(post_inputs);
 
-  async function sendRequest(e: any) {
+  async function sendRequest(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
     e.preventDefault();
 
     if (postInputs.username == "" || postInputs.password == "") {
@@ -26,6 +28,25 @@ const Signin = () => {
       const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
         username: postInputs.username,
         password: postInputs.password,
+      });
+      const jwt = await response.data.jwt;
+      localStorage.setItem("authorization", "Bearer " + jwt);
+      toast.success("Sign in success");
+      navigate("/blogs");
+    } catch (error) {
+      toast.error("Invalid inputs");
+    }
+  }
+
+  async function handleGuestLogin(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+    try {
+      toast.info(<Loading />, { autoClose: 1000 });
+      const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
+        username: "Guest@gmail.com",
+        password: "123456789",
       });
       const jwt = await response.data.jwt;
       localStorage.setItem("authorization", "Bearer " + jwt);
@@ -83,10 +104,17 @@ const Signin = () => {
                 />
                 <button
                   type="button"
-                  className="text-white bg-gray-800 w-full mt-6 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                  className="text-white bg-gray-800 w-full mt-6 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                   onClick={sendRequest}
                 >
                   Sign in
+                </button>
+                <button
+                  type="button"
+                  className="text-white bg-gray-800 w-full mt-2 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+                  onClick={handleGuestLogin}
+                >
+                  Sign in as Guest
                 </button>
               </div>
             </div>

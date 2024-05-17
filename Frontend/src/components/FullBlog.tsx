@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Blog } from "../pages/Blogs";
 import { Appbar } from "./Appbar";
 import Avatar from "./Avatar";
@@ -45,4 +46,4 @@ const FullBlog = ({ blog }: { blog: Blog }) => {
   );
 };
 
-export default FullBlog;
+export default memo(FullBlog);
