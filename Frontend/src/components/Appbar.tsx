@@ -11,7 +11,9 @@ export const Appbar = () => {
     <>
       <div className="border-b flex py-4 justify-between px-10">
         <div className="flex justify-center items-center cursor-pointer">
-          <Link to="/blogs">Medium</Link>
+          <Link to="/blogs" className="font-bold">
+            Medium
+          </Link>
         </div>
         <div className="flex">
           <div>
@@ -24,6 +26,7 @@ export const Appbar = () => {
               </button>
             </Link>
           </div>
+
           <div>
             <button
               onClick={Logout}

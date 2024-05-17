@@ -29,18 +29,23 @@ const Blogs = () => {
       </div>
     );
   } else if (all_Blogs.state == "hasValue") {
+    let reversedArray = all_Blogs.contents.map(
+      (_v: string, index: number, array: Array<String>) => {
+        return array[array.length - 1 - index];
+      }
+    );
     return (
       <>
         <Appbar />
 
-        {all_Blogs.contents.map((blog: Blog, index: number) => (
+        {reversedArray.map((blog: Blog, index: number) => (
           <div key={index}>
             <BlogCard
               id={blog.id}
               authorName={blog.author.name || "Anonymous"}
               title={blog.title}
               content={blog.content}
-              publishedDate="2nd feb 2024"
+              publishedDate="17 May 2024"
             />
           </div>
         ))}

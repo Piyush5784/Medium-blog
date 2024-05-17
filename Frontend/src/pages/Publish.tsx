@@ -4,10 +4,13 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useRecoilRefresher_UNSTABLE } from "recoil";
+import { allBlogs } from "../Atoms/BlogAtom";
 
 const Publish = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const refresh = useRecoilRefresher_UNSTABLE(allBlogs);
 
   const navigate = useNavigate();
 
@@ -27,6 +30,7 @@ const Publish = () => {
         },
       }
     );
+    refresh();
     navigate(`/blog/${response.data.id}`);
   }, [title, description]);
 
