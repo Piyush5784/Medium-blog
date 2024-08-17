@@ -4,8 +4,7 @@ import Quote from "../components/Quote";
 import { useState } from "react";
 import { SignupInput } from "@100xdevs/medium-common";
 import { BACKEND_URL } from "../config";
-import { toast } from "react-toastify";
-import Loading from "../components/Loading";
+import { toast } from "react-hot-toast";
 import axios from "axios";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
@@ -25,15 +24,21 @@ const Signup = () => {
       postInputs.password == "" ||
       postInputs.name == ""
     ) {
-      return toast.warn("Please fill all inputs");
+      return toast.error("Please fill all inputs");
     }
     try {
-      toast.info(<Loading />, { autoClose: 1000 });
-      const response = await axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
-        username: postInputs.username,
-        password: postInputs.password,
-        name: postInputs.name,
-      });
+      const response = await toast.promise(
+        axios.post(`${BACKEND_URL}/api/v1/user/signup`, {
+          username: postInputs.username,
+          password: postInputs.password,
+          name: postInputs.name,
+        }),
+        {
+          loading: "Signing in...",
+          success: <b>Successfully signed in!</b>,
+          error: <b>Failed to sign in. Please check your credentials.</b>,
+        }
+      );
       const jwt = await response.data.jwt;
       localStorage.setItem("authorization", "Bearer " + jwt);
       toast.success("Sign up success");

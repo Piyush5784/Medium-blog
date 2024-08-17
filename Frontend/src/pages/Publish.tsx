@@ -3,7 +3,7 @@ import { Appbar } from "../components/Appbar";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 import { useRecoilRefresher_UNSTABLE } from "recoil";
 import { allBlogs } from "../Atoms/BlogAtom";
 
@@ -16,7 +16,7 @@ const Publish = () => {
 
   const publishPost = useCallback(async () => {
     if (title == "" || description == "") {
-      return toast.warn("Please fill all inputs");
+      return toast.error("Please fill all inputs");
     }
     const response = await axios.post(
       `${BACKEND_URL}/api/v1/blog`,

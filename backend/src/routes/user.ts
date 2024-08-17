@@ -23,7 +23,7 @@ userRouter.post("/checkuser", async (c) => {
     const res = await verify(token, c.env.JWT_SECRET);
     const user = await prisma.user.findUnique({
       where: {
-        id: res.id,
+        id: Number(res.id),
       },
     });
 

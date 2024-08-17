@@ -4,8 +4,10 @@ import Quote from "../components/Quote";
 import { SigninInput } from "@100xdevs/medium-common";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
+
 import Loading from "../components/Loading";
+
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useRecoilState } from "recoil";
 import { post_inputs } from "../Atoms/BlogAtom";
@@ -20,18 +22,23 @@ const Signin = () => {
     e.preventDefault();
 
     if (postInputs.username == "" || postInputs.password == "") {
-      return toast.warn("Please fill all inputs");
+      return toast.error("Please fill all inputs");
     }
 
     try {
-      toast.info(<Loading />, { autoClose: 1000 });
-      const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
-        username: postInputs.username,
-        password: postInputs.password,
-      });
+      const response = await toast.promise(
+        axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
+          username: postInputs.username,
+          password: postInputs.password,
+        }),
+        {
+          loading: "Signing in...",
+          success: <b>Successfully signed in!</b>,
+          error: <b>Failed to sign in. Please check your credentials.</b>,
+        }
+      );
       const jwt = await response.data.jwt;
       localStorage.setItem("authorization", "Bearer " + jwt);
-      toast.success("Sign in success");
       navigate("/blogs");
     } catch (error) {
       toast.error("Invalid inputs");
@@ -43,14 +50,20 @@ const Signin = () => {
   ) {
     e.preventDefault();
     try {
-      toast.info(<Loading />, { autoClose: 1000 });
-      const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
-        username: "Guest@gmail.com",
-        password: "123456789",
-      });
+      const response = await toast.promise(
+        axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
+          username: "Guest@gmail.com",
+          password: "123456789",
+        }),
+        {
+          loading: "Signing in...",
+          success: <b>Successfully signed in!</b>,
+          error: <b>Failed to sign in. Please check your credentials.</b>,
+        }
+      );
       const jwt = await response.data.jwt;
       localStorage.setItem("authorization", "Bearer " + jwt);
-      toast.success("Sign in success");
+      toast("Sign in success");
       navigate("/blogs");
     } catch (error) {
       toast.error("Invalid inputs");
@@ -85,7 +98,7 @@ const Signin = () => {
                   label="Email"
                   placeholder="Piyush"
                   onChange={(e) =>
-                    setPostInputs((c) => ({
+                    setPostInputs((c: any) => ({
                       ...c,
                       username: e.target.value,
                     }))
@@ -96,7 +109,7 @@ const Signin = () => {
                   type="password"
                   placeholder="Piyush"
                   onChange={(e) =>
-                    setPostInputs((c) => ({
+                    setPostInputs((c: any) => ({
                       ...c,
                       password: e.target.value,
                     }))

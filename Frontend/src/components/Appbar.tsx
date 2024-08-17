@@ -1,8 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
+import { useEffect } from "react";
 
 export const Appbar = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("authorization");
+    console.log(token);
+  }, []);
+
   function Logout() {
     localStorage.removeItem("authorization");
     navigate("/signin");
