@@ -6,8 +6,6 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { toast } from "react-hot-toast";
 
-import Loading from "../components/Loading";
-
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useRecoilState } from "recoil";
 import { post_inputs } from "../Atoms/BlogAtom";
@@ -46,31 +44,31 @@ const Signin = () => {
     }
   }
 
-  async function handleGuestLogin(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) {
-    e.preventDefault();
-    try {
-      const response = await toast.promise(
-        axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
-          username: `guest${Math.floor(Math.random() * 10000)}@gmail.com`,
-          password: "123456789sdf",
-        }),
-        {
-          loading: "Signing in...",
-          success: <b>Successfully signed in!</b>,
-          error: <b>Failed to sign in. Please check your credentials.</b>,
-        }
-      );
-      const jwt = await response.data.jwt;
-      localStorage.setItem("authorization", "Bearer " + jwt);
-      toast("Sign in success");
-      navigate("/blogs");
-    } catch (error) {
-      console.log(error);
-      toast.error("Invalid inputs");
-    }
-  }
+  // async function handleGuestLogin(
+  //   e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  // ) {
+  //   e.preventDefault();
+  //   try {
+  //     const response = await toast.promise(
+  //       axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
+  //         username: `guest${Math.floor(Math.random() * 10000)}@gmail.com`,
+  //         password: "123456789sdf",
+  //       }),
+  //       {
+  //         loading: "Signing in...",
+  //         success: <b>Successfully signed in!</b>,
+  //         error: <b>Failed to sign in. Please check your credentials.</b>,
+  //       }
+  //     );
+  //     const jwt = await response.data.jwt;
+  //     localStorage.setItem("authorization", "Bearer " + jwt);
+  //     toast("Sign in success");
+  //     navigate("/blogs");
+  //   } catch (error) {
+  //     console.log(error);
+  //     toast.error("Invalid inputs");
+  //   }
+  // }
 
   return (
     <>
@@ -124,13 +122,13 @@ const Signin = () => {
                 >
                   Sign in
                 </button>
-                <button
+                {/* <button
                   type="button"
                   className="text-white bg-gray-800 w-full mt-2 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
                   onClick={handleGuestLogin}
                 >
                   Sign in as Guest
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
