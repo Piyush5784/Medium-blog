@@ -41,6 +41,7 @@ const Signin = () => {
       localStorage.setItem("authorization", "Bearer " + jwt);
       navigate("/blogs");
     } catch (error) {
+      console.log(error);
       toast.error("Invalid inputs");
     }
   }
@@ -52,8 +53,8 @@ const Signin = () => {
     try {
       const response = await toast.promise(
         axios.post(`${BACKEND_URL}/api/v1/user/signin`, {
-          username: "Guest@gmail.com",
-          password: "123456789",
+          username: `guest${Math.floor(Math.random() * 10000)}@gmail.com`,
+          password: "123456789sdf",
         }),
         {
           loading: "Signing in...",
@@ -66,6 +67,7 @@ const Signin = () => {
       toast("Sign in success");
       navigate("/blogs");
     } catch (error) {
+      console.log(error);
       toast.error("Invalid inputs");
     }
   }
